@@ -34,7 +34,7 @@ let p = new Proxy(target, handler)
 11. apply(target, object, args): 拦截 Proxy 实例作为函数调用的操作, 比如proxy(...args)、proxy.call(object, ...args)、proxy.apply(...)
 12. construct(target, args): 拦截 Proxy 实例作为构造函数调用的操作,比如new proxy(...args)
 
-## 列子
+## 例子
 
 ```js
  let obj = {};
