@@ -89,5 +89,5 @@ deploy:
   type: git
   repo: git@github.com:claviering/claviering.github.io.git
   branch: master
-  message: my blog
+  message:
 
