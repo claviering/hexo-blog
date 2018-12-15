@@ -2,7 +2,7 @@
 title: cordova + Vue 开发android apk
 date: 2018-07-20
 tags:
-- Vue 
+- vue 
 - Cordova
 - Android
 ---
