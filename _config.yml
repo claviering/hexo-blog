@@ -10,7 +10,7 @@ keywords: front-end
 author: weiye
 language: en
 timezone:
-favicon: ./images/favicon.ico
+favicon: ./favicon.ico
 sidebar-avatar: ./images/me.jpg
 
 # URL
@@ -76,9 +76,6 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: aircloud
-theme_config:
-  favicon: /images/favicon.ico
-  avatar: /images/me.jpg
 search:
   path: search.json
   field: post
