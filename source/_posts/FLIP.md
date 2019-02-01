@@ -39,6 +39,27 @@ const last = el.getBoundingClientRect()
 ## Play
 把 transform 设置为 none, 将其移动到 last 位置
 
+```js
+elm.animate([
+    {
+        transformOrigin: 'top left',
+        transform: `
+            translate(${deltaX}px, ${deltaY}px)
+            scale(${deltaW}, ${deltaH})
+        `
+    }, 
+    {
+        transformOrigin: 'top left',
+        transform: 'none'
+    }], 
+    {
+        duration: 300,
+        easing: 'ease-in-out',
+        fill: 'both'
+    }
+);
+```
+
 ## flipping.js
 
 FLIP 函数库
