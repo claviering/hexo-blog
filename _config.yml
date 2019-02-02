@@ -10,8 +10,8 @@ keywords: front-end
 author: weiye
 language: en
 timezone:
-favicon: ./favicon.ico
-sidebar-avatar: ./images/me.jpg
+# favicon: ./favicon.ico
+sidebar-avatar: ./img/jiateng.jpeg
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
