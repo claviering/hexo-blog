@@ -86,4 +86,3 @@ deploy:
   repo: git@github.com:claviering/claviering.github.io.git
   branch: master
   message:
-
