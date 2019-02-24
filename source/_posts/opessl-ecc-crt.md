@@ -24,13 +24,13 @@ distinguished_name = req_distinguished_name
 [ req_distinguished_name ]
 countryName = "CN"
 localityName = "GZ"
-organizationName = "weiye"
-organizationalUnitName = "weiye"
-commonName = "localhost certificate"
-emailAddress = "weiye@mail.com"
+organizationName = "root"
+organizationalUnitName = "root"
+commonName = "root certificate"
+emailAddress = "root@email.com"
 ```
 
-domain.conf 域名证书配置
+server.conf 域名证书配置
 
 ```conf
 [ req ]
@@ -41,11 +41,11 @@ prompt             = no
 distinguished_name = dn
 [dn]
 C = US
-ST = weiyeState
-L = weiyeCity
-O = weiyeOrganization
-OU = weiyeOrganizationUnit
-emailAddress = weiye@email.address
+ST = localhostState
+L = localhostCity
+O = localhostOrganization
+OU = localhostOrganizationUnit
+emailAddress = localhost@email.address
 CN = localhost
 ```
 
@@ -71,46 +71,46 @@ gen.sh
 
 ```bash
 #!/bin/sh
-# create self-signed domain certificate:
+# create self-signed server certificate:
 source ~/.bashrc
-echo 'make sure root.conf and domain.conf file exist'
+echo 'make sure root.conf and server.conf file exist'
 echo 'openssl version ...'
 openssl version -a | echo
 echo 'step 0: create root private key ...'
 openssl genrsa -des3 -out root.key 2048
 openssl req -x509 -new -config root.conf -key root.key -sha384 -days 3650 -out root.pem
-echo 'step 1: create domain csr'
-openssl genrsa -out domain.key 2048
-openssl req -new -config domain.conf -out domain.csr
+echo 'step 1: create server csr'
+openssl genrsa -out server.key 2048
+openssl req -new -config server.conf -out server.csr
 echo 'Remove passphrase from a key'
-openssl ecparam -in domain.key -out domain-without-passphrase.key
+openssl ecparam -in server.key -out server-without-passphrase.key
 echo 'step 2: 用根证书颁发证书'
-openssl x509 -req -in domain.csr -CA root.pem -CAkey root.key -CAcreateserial -out domain.crt -days 3650 -sha384 -extfile v3.ext
+openssl x509 -req -in server.csr -CA root.pem -CAkey root.key -CAcreateserial -out server.crt -days 3650 -sha384 -extfile v3.ext
 echo 'completed ...'
 ```
 执行 `gen.sh` 自动生成
 
 ## 创建 ECC 证书
 
+删除 root.conf 和 server.conf `default_bits       = 4096`
+
 gen.sh
 
 ```bash
-#!/bin/sh
-# create self-signed domain certificate:
-source ~/.bashrc
-echo 'make sure root.conf and domain.conf file exist'
-echo 'openssl version ...'
-openssl version -a | echo
+#! /bin/sh
+# create self-signed server certificate:
+echo 'make sure root.conf and server.conf file exist'
+echo 'openssl version requset 1.1.1 ...'
 echo 'step 0: create root private key ...'
-openssl ecparam  -genkey -out root.key
-openssl req -x509 -new -config root.conf -key root.key -sha384 -days 3650 -out root.pem
-echo 'step 1: create domain csr'
-openssl ecparam  -genkey -out domain.key
-openssl req -new -config domain.conf -out domain.csr
-echo 'Remove passphrase from a key'
-openssl ecparam -in domain.key -out domain-without-passphrase.key
-echo 'step 2: 用根证书颁发证书'
-openssl x509 -req -in domain.csr -CA root.pem -CAkey root.key -CAcreateserial -out domain.crt -days 3650 -sha384 -extfile v3.ext
+openssl ecparam -name secp384r1 -genkey -out root.key
+echo 'step 1: create root certificate ...'
+openssl req -x509 -new -config root.conf -key root.key -sha384 -days 3650 -out root.crt
+echo 'step 2: create server private key ...'
+openssl ecparam -genkey -name secp384r1 -out server.key
+echo 'step 3: create server csr ...'
+openssl req -new -config server.conf -key server.key -out server.csr -sha384
+echo 'step 4: 用根证书颁发证书'
+openssl x509 -req -in server.csr -CA root.crt -CAkey root.key -CAcreateserial -out server.crt -days 3650 -sha384 -extfile v3.ext
 echo 'completed ...'
 ```
 执行 `gen.sh` 自动生成
