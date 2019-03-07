@@ -83,7 +83,7 @@ echo 'step 1: create server csr'
 openssl genrsa -out server.key 2048
 openssl req -new -config server.conf -out server.csr
 echo 'Remove passphrase from a key'
-openssl ecparam -in server.key -out server-without-passphrase.key
+openssl rsa -in server.key -out server-without-passphrase.key
 echo 'step 2: 用根证书颁发证书'
 openssl x509 -req -in server.csr -CA root.pem -CAkey root.key -CAcreateserial -out server.crt -days 3650 -sha384 -extfile v3.ext
 echo 'completed ...'
