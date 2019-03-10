@@ -17,7 +17,7 @@ root.conf 根证书配置
 [ req ]
 default_bits       = 4096
 default_md         = sha384
-default_keyfile    = private.key
+default_keyfile    = root.key
 prompt             = no
 # encrypt_key        = 123456
 distinguished_name = req_distinguished_name
@@ -36,7 +36,7 @@ server.conf 域名证书配置
 [ req ]
 default_bits       = 4096
 default_md         = sha384
-default_keyfile    = domain.key
+default_keyfile    = server.key
 prompt             = no
 distinguished_name = dn
 [dn]
@@ -59,7 +59,6 @@ subjectAltName = @alt_names
 
 [alt_names]
 DNS.1 = localhost
-DNS.3 = 127.0.0.1
 DNS.2 = www.example.com
 ```
 
