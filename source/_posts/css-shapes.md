@@ -4,7 +4,6 @@ date: 2019-05-12 13:25:22
 tags:
 - css
 ---
-<link href="main.css" rel="stylesheet"></link>
 
 ## 摘要
 
@@ -153,3 +152,47 @@ shape-image-threshold 图片透明度。如果原始图片透明度不是 1，�
 > [盒模型](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Shapes/From_box_values)
 > 
 > [基础形状](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Shapes/Basic_Shapes)
+
+<style>
+.box-circle::before {
+  content: "";
+  float: left;
+  width: 350px;
+  height: 350px;
+  shape-outside: circle(50% at top left);
+  border-radius: 50%;
+}
+.box-inset::before {
+  content: "";
+  float: left;
+  width: 150px;
+  height: 100px;
+  shape-outside: inset(20px 50px 10px 0 round 50px) margin-box;
+  background-color: rebeccapurple;
+  border: 2px solid black;
+  border-radius: 10px;
+  margin: 20px;
+  padding: 20px;
+}
+.box-inset br{
+  display: none;
+}
+.box-ellipse::before {
+  content: "";
+  float: left;
+  shape-outside: ellipse(40% 50% at left);
+  margin: 20px;
+  width: 100px;
+  height: 200px;
+}
+.box-polygon::before {
+  content: "";
+  float: left;
+  shape-outside: polygon(0px 0px, 0px 189px, 100.48% 94.71%, 200px 120px, 80.67% 37.17%);
+  width: 200px;
+  height: 200px;
+}
+.box-polygon br{
+  display: none;
+}
+</style>
