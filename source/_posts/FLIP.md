@@ -15,6 +15,12 @@ FLIP技术可以以一种高性能的方式来动态的改变DOM元素的位置�
 
 在动画中尽量的只使用transform和opacity, 让动效更流畅，让样式计算的数量尽量的少，而且尽可能的快
 
+## Demo
+
+
+<div class="content">
+<div>
+
 ## First
 First，指的是在任何事情发生之前（过渡之前），记录当前元素的位置和尺寸。可以使用`getBoundingClientRect()`这个API来处理
 ```js
@@ -69,3 +75,17 @@ FLIP 函数库
 ## 参考
 
 > [FLIP技术给Web布局带来的变化](https://www.w3cplus.com/javascript/animating-layouts-with-the-flip-technique.html)
+
+<style>
+.content{
+    width: 100px;
+    height: 200px;
+    background-color: darkgray;
+    transform: scale(0.5,0.5);
+    cursor: pointer;
+}
+.content:hover{
+    transition: all 0.5s;
+    transform: none;
+}
+</style>
