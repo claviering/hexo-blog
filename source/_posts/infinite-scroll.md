@@ -51,9 +51,11 @@ var loadMore = function() {
   }
 }
 
+var distance = 0; // 到底部时候触发
+
 // Detect when scrolled to bottom.
 listElm.addEventListener('scroll', function() {
-  if (listElm.scrollTop + listElm.clientHeight >= listElm.scrollHeight) {
+  if (listElm.scrollTop + listElm.clientHeight >= (listElm.scrollHeight - distance)) {
     loadMore();
   }
 });

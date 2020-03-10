@@ -12,6 +12,14 @@ node v10.11
 
 aircloud
 
-## build
+## dev
+
+`npm run dev`
+
+`hexo server`
+
+## deploy
+
+`npm run build`
 
 `hexo clean && hexo g -d`
